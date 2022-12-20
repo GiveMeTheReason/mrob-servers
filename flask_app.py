@@ -47,15 +47,16 @@ machines: tp.Dict[str, Machine] = {}
 
 
 app = Flask(__name__)
-# scheduler = APScheduler()
-# scheduler.api_enabled = True
-# scheduler.init_app(app)
-# scheduler.start()
+scheduler = APScheduler()
+scheduler.api_enabled = True
+scheduler.init_app(app)
+scheduler.start()
 
 
-# @scheduler.task('interval', id='Process_status', seconds=300, max_instances=1)
+@scheduler.task('interval', id='Process_status', seconds=300, max_instances=1)
 def process_machines_status():
     pass
+
 
 @app.route('/')
 def hello_world():
